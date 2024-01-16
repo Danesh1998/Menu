@@ -1,0 +1,177 @@
+{% extends "council/main.html" %}
+{% block body %}
+{% load static %}
+
+<table class="table" style="border: 1px solid black;">
+    <thead>
+        <tr>
+            <th scope="col">SL.NO</th>
+            <th scope="col">Member Name</th>
+            <th scope="col">Ward No</th>
+            <th scope="col">Phone.No</th>
+            <th scope="col">Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="col">1</td>
+            <td scope="col">Prashant</td>
+            <td scope="col">1</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp1.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">2</td>
+            <td scope="col">Badru</td>
+            <td scope="col">2</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp2.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">3</td>
+            <td scope="col">Heman</td>
+            <td scope="col">3</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp3.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">4</td>
+            <td scope="col">Sarthak</td>
+            <td scope="col">4</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp4.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">5</td>
+            <td scope="col">Sukesh</td>
+            <td scope="col">5</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp5.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">6</td>
+            <td scope="col">Hemanth</td>
+            <td scope="col">6</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp6.jpg' %}" alt="Prashant's Picture" width="50px" height="30px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">7</td>
+            <td scope="col">Vinayak</td>
+            <td scope="col">7</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp7.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">8</td>
+            <td scope="col">Aditya</td>
+            <td scope="col">8</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp8.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">9</td>
+            <td scope="col">Sneha</td>
+            <td scope="col">9</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp9.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td scope="col">10</td>
+            <td scope="col">Sambrama</td>
+            <td scope="col">10</td>
+            <td scope="col">9916613533</td>
+            <td scope="col"><img src="{% static 'images/emp10.jpg' %}" alt="Prashant's Picture" width="50px"></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('submitBtn').addEventListener('click', function () {
+    var textAreaValue = document.getElementById('exampleFormControlTextarea1').value;
+    var uploadedFile = document.getElementById('uploadPhoto').files[0]; // Get the uploaded file
+
+    if (textAreaValue.trim() === '' || !uploadedFile) {
+        alert('Please complete all fields.');
+        return;
+    }
+
+    var formData = new FormData();
+    formData.append('photo', uploadedFile);
+    formData.append('text_area', textAreaValue);
+
+    fetch('/save-photo/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            alert('Complaint raised successfully!');
+            window.location.href = '/';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error saving complaint and data.');
+        });
+});
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+
+
+
+
+

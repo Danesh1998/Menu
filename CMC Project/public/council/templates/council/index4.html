@@ -1,0 +1,170 @@
+{% comment %} {% extends "council/main.html" %}
+{% block body %}
+{% load static %} {% endcomment %}
+{% comment %} <!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+
+    <title>USER</title>
+    
+</head>
+
+<body>
+  
+    <table class="table" style="border: 1px solid black;">
+        <thead>
+          <tr>
+            <th scope="col">State</th>
+            <th scope="col">District</th>
+            <th scope="col">Taluk</th> 
+            <th scope="col">City</th>
+            <th scope="col">Ward No</th>
+            <th scope="col">Colony</th>
+            <th scope="col">Phone No</th>
+            <th scope="col">Date</th>
+            <th scope="col">Electric</th>
+            <th scope="col">Garbage</th>
+            <th scope="col">Water</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Text</th>
+            <th scope="col">location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in show %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ i.state.state_name }}</td>
+              <td>{{ i.dist.district_name }}</td>
+              <td>{{ i.taluk.taluk_name }}</td>
+              <td>{{ i.city.city_name }}</td>
+              <td>{{ i.ward_noo.ward_no }}</td>
+              <td>{{ i.colony.colony_name }}</td>
+              <td>{{ i.phone.phone_no }}</td>
+              <td>{{ i.date.date }}</td>
+              <td>{{ i.electric }}</td>
+              <td>{{ i.garbage }}</td>
+              <td>{{ i.water }}</td>
+             
+              <td>
+                {% if i.photo %}
+                  <img src="{{ i.photo.url }}" alt="Complaint Photo" width="50px">
+                {% endif %}
+              </td>
+              <td>{{ i.text_area }}</td>
+              <td>{{ i.location}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html> {% endcomment %}
+{% comment %} {% endblock body %} {% endcomment %}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Bootstrap Table Example</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+{% comment %} <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
+    <a class="navbar-brand" href="#">Your App Name</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log Out</a>
+      </li>
+    </ul>
+  </nav> {% endcomment %}
+  
+  <table id="myTable" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">SL.NO</th>
+        <th scope="col">State</th>
+        <th scope="col">District</th>
+        <th scope="col">Taluk</th> 
+        <th scope="col">City</th>
+        <th scope="col">Ward No</th>
+        <th scope="col">Colony</th>
+        <th scope="col">Phone No</th>
+        <th scope="col">Date</th>
+        <th scope="col">Electric</th>
+        <th scope="col">Garbage</th>
+        <th scope="col">Water</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Text</th>
+        <th scope="col">location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in show %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.state.state_name }}</td>
+        <td>{{ i.dist.district_name }}</td>
+        <td>{{ i.taluk.taluk_name }}</td>
+        <td>{{ i.city.city_name }}</td>
+        <td>{{ i.ward_noo.ward_no }}</td>
+        <td>{{ i.colony.colony_name }}</td>
+        <td>{{ i.phone.phone_no }}</td>
+        <td>{{ i.date.date }}</td>
+        <td>{{ i.electric }}</td>
+        <td>{{ i.garbage }}</td>
+        <td>{{ i.water }}</td>
+       
+        <td>
+          {% if i.photo %}
+            <img src="{{ i.photo.url }}" alt="Complaint Photo" width="50px">
+          {% endif %}
+        </td>
+        <td>{{ i.text_area }}</td>
+        <td>{{ i.location}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // jQuery code to manipulate the Bootstrap table
+  $(document).ready(function() {
+    // Add a new row to the table
+    $("#myTable tbody").append("<tr><td>Michael</td><td>19</td><td>A</td></tr>");
+
+    // Change the background color of table rows
+    $("#myTable tbody tr:even").addClass("table-secondary");
+  });
+</script>
+
+</body>
+</html>
+{% comment %} {% endblock body %} {% endcomment %}
